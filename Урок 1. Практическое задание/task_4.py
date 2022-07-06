@@ -59,7 +59,7 @@ print(autentification_1('Leeloo', 'dcyrbjd'))
 def autentification_2(login: str, password: str):
     if login not in users:
         return 'Вы еще не зарегистрированы в системе или ввели неверный логин'
-    for name in users:
+    for name in users:                                                              # O(n)
         if login == name and users.get(name) == (password, 'activated'):
             return f'{login}, добро пожаловать на сайт!'
         elif login == name and users.get(name) == (password, 'not_activated'):
@@ -70,7 +70,11 @@ def autentification_2(login: str, password: str):
 
 # Проверка:
 print('--------------------')
-print(autentification_2('Leeloo', 'dhcyrb4jbd'))
+print(autentification_2('Ruby Rhood', 'yesBaby#@!'))
 print(autentification_2('Emanuel Zorg', 'StoNeS'))
 print(autentification_2('Aknot', 'Mrrr'))
 print(autentification_2('user', '12345'))
+
+"""
+Решение № эффективнее, так как 
+"""
