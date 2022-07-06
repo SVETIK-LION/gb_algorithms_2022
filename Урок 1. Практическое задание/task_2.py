@@ -19,6 +19,7 @@
 
 lst_1 = [5, -4, 25, 17, 36]
 
+
 def min_list_element_1(lst: list):
     for k in range(len(lst) - 1):                    # O(n)
         for i in range(len(lst) - 1):                # O(n)
@@ -32,6 +33,7 @@ print(min_list_element_1(lst_1))
 
 
 lst_2 = [4, 3, -2, 15, 1]
+
 
 def min_list_element_2(lst: list):
     min_element = lst[0]            # O(1)

@@ -26,32 +26,35 @@ companies = {
     'Vault-Tec Corporation': 43893849392923
 }
 
+
 # Решение №1:
-def three_largest_profit_1(dict):
-    sorted_values = sorted(dict.values(), reverse=True) # O(n * log(n)) Сортировка значений словаря
+def three_largest_profit_1(information: dict):
+    sorted_values = sorted(information.values(), reverse=True)  # O(n * log(n)) Сортировка значений словаря
     sorted_dict = {}                                    # O(1)
 
     for i in sorted_values:                             # O(n)
-        for j in dict.keys():                           # O(n) + O(1)
-            if dict[j] == i:                            # O(1)
-                sorted_dict[j] = dict[j]                # O(1)
+        for j in information.keys():                           # O(n) + O(1)
+            if information[j] == i:                            # O(1)
+                sorted_dict[j] = information[j]                # O(1)
                 break
     return list(sorted_dict.items())[0:3]               # O(1) + O(len(dict)) + (O[0:3] => O(1))
     # Общая сложность: O(n * log(n)) + O(n**2) = O(n**2)
+
 
 print(three_largest_profit_1(companies))
 
 
 # Решение №2:
-def three_largest_profit_2(dict):
-    sorted_keys = sorted(dict, key=dict.get, reverse=True) # O(n * log(n)) Сортировка ключей по их значениям в порядке убывания
+def three_largest_profit_2(information: dict):
+    sorted_keys = sorted(information, key=information.get, reverse=True)  # O(n * log(n))
     sorted_dict = {}                        # O(1)
 
     for i in sorted_keys:                   # O(n)
-        sorted_dict[i] = dict[i]            # O(1)
+        sorted_dict[i] = information[i]            # O(1)
 
     return list(sorted_dict.items())[0:3]   # (O(1) + O(len(dict)) + O[0:3]) => O(1)
     # Общая сложность: O(n * log(n)) + O(n) = O(n * log(n))
+
 
 print(three_largest_profit_2(companies))
 
@@ -60,4 +63,3 @@ print(three_largest_profit_2(companies))
 Так как скорость алгоритма со сложностью O(n * log(n)) меняется менее значительно при увеличении количества значений,
 чем скорость алгоритма со сложностью O(n**2).
 """
-

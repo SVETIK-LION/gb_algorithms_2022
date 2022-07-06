@@ -57,6 +57,8 @@ print(autentification_1('Leeloo', 'dcyrbjd'))
 
 # Решение №2
 def autentification_2(login: str, password: str):
+    if login not in users:
+        return 'Вы еще не зарегистрированы в системе или ввели неверный логин'
     for name in users:
         if login == name and users.get(name) == (password, 'activated'):
             return f'{login}, добро пожаловать на сайт!'
@@ -64,13 +66,11 @@ def autentification_2(login: str, password: str):
             return f'{login}, пожалуйста, активируйте Вашу учетную запись'
         elif login == name and list(users.get(name))[0] != password:
             return 'Неверный пароль'
-    if login not in users:
-        return 'Вы еще не зарегистрированы в системе или ввели неверный логин'
 
 
 # Проверка:
+print('--------------------')
 print(autentification_2('Leeloo', 'dhcyrb4jbd'))
 print(autentification_2('Emanuel Zorg', 'StoNeS'))
 print(autentification_2('Aknot', 'Mrrr'))
 print(autentification_2('user', '12345'))
-
