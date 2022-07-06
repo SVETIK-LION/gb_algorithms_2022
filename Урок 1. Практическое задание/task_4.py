@@ -31,11 +31,12 @@ users = {
     'Ruby Rhood': ('yesBaby#@!', 'activated'),
     'Aknot': ('Arrr', 'not_activated'),
     'Emanuel Zorg': ('StoNeS', 'not_activated'),
-    'Diva Plavalaguna': ('SongTheSong', 'activated')
+    'Diva Plavalaguna': ('SingTheSong', 'activated')
 }
 
 
-def autentification(login: str, password: str):
+# Решение №1
+def autentification_1(login: str, password: str):
     if login in users:
         if password == list(users.get(login))[0] and list(users.get(login))[1] == 'activated':
             return f'{login}, добро пожаловать на сайт!'
@@ -48,7 +49,28 @@ def autentification(login: str, password: str):
 
 
 # Проверка:
-print(autentification('Korben Dallas', 'Korben123'))
-print(autentification('Aknot', 'Arrr'))
-print(autentification('Lelo', 'dhcyrb4jbd'))
-print(autentification('Leeloo', 'dcyrbjd'))
+print(autentification_1('Korben Dallas', 'Korben123'))
+print(autentification_1('Aknot', 'Arrr'))
+print(autentification_1('Lelo', 'dhcyrb4jbd'))
+print(autentification_1('Leeloo', 'dcyrbjd'))
+
+
+# Решение №2
+def autentification_2(login: str, password: str):
+    for name in users:
+        if login == name and users.get(name) == (password, 'activated'):
+            return f'{login}, добро пожаловать на сайт!'
+        elif login == name and users.get(name) == (password, 'not_activated'):
+            return f'{login}, пожалуйста, активируйте Вашу учетную запись'
+        elif login == name and list(users.get(name))[0] != password:
+            return 'Неверный пароль'
+    if login not in users:
+        return 'Вы еще не зарегистрированы в системе или ввели неверный логин'
+
+
+# Проверка:
+print(autentification_2('Leeloo', 'dhcyrb4jbd'))
+print(autentification_2('Emanuel Zorg', 'StoNeS'))
+print(autentification_2('Aknot', 'Mrrr'))
+print(autentification_2('user', '12345'))
+
