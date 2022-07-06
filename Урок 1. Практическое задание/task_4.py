@@ -24,4 +24,31 @@
 """
 
 
-def autentification()
+# Учетные записи пользователей
+users = {
+    'Korben Dallas': ('Korben123', 'activated'),
+    'Leeloo': ('dhcyrb4jbd', 'activated'),
+    'Ruby Rhood': ('yesBaby#@!', 'activated'),
+    'Aknot': ('Arrr', 'not_activated'),
+    'Emanuel Zorg': ('StoNeS', 'not_activated'),
+    'Diva Plavalaguna': ('SongTheSong', 'activated')
+}
+
+
+def autentification(login: str, password: str):
+    if login in users:
+        if password == list(users.get(login))[0] and list(users.get(login))[1] == 'activated':
+            return f'{login}, добро пожаловать на сайт!'
+        elif password == list(users.get(login))[0] and list(users.get(login))[1] == 'not_activated':
+            return f'{login}, пожалуйста, активируйте Вашу учетную запись'
+        else:
+            return 'Неверный пароль'
+    else:
+        return 'Вы еще не зарегистрированы в системе или ввели неверный логин'
+
+
+# Проверка:
+print(autentification('Korben Dallas', 'Korben123'))
+print(autentification('Aknot', 'Arrr'))
+print(autentification('Lelo', 'dhcyrb4jbd'))
+print(autentification('Leeloo', 'dcyrbjd'))
