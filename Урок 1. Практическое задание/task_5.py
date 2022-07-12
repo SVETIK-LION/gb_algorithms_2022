@@ -17,3 +17,46 @@
 --создание нового стопки можно реализовать добавлением нового пустого массива
 в массив стопок (lst = [[], [], [], [],....]).
 """
+
+
+class StackOfPlates:
+    def __init__(self):
+        # На стол может поместиться 8 стопок тарелок
+        self.elems = [[], [], [], [], [], [], [], []]
+
+    def is_empty(self):
+        return self.elems == []
+
+    def push_in(self, el):
+        # Предположим, что в стопке может быть не более 10 тарелок
+        for i in range(0, len(self.elems)):
+            if len(self.elems[i]) < 10:
+                self.elems[i].append(el)
+                break
+
+
+
+
+    def pop_out(self):
+        self.elems.pop()
+
+    def get_val(self):
+        return self.elems[len(self.elems) - 1]
+
+    def amount_plates(self):
+        return len(self.elems)
+
+
+if __name__ == '__main__':
+
+    stack_1 = StackOfPlates()
+    stack_1.is_empty()
+    print(stack_1.elems)
+
+    i = 0
+    # В цикле while указываем количество тарелок, которые мы хотим поместить на стол
+    while i <= 74:
+        stack_1.push_in(i)
+        i += 1
+
+    print(stack_1.elems)
