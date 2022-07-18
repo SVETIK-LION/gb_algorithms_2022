@@ -36,47 +36,51 @@ users = {
 
 
 # Решение №1
-def autentification_1(login: str, password: str):
-    if login in users:                                                                                # O(n)
-        if password == list(users.get(login))[0] and list(users.get(login))[1] == 'activated':        # O(?)
-            return f'{login}, добро пожаловать на сайт!'                                              # O(1)
-        elif password == list(users.get(login))[0] and list(users.get(login))[1] == 'not_activated':  # O(?)
-            return f'{login}, пожалуйста, активируйте Вашу учетную запись'                            # O(1)
+def autentification_1(users_list: dict, login: str, password: str):
+    if login in users_list:                                                                                     # O(n)
+        if password == list(users_list.get(login))[0] and list(users_list.get(login))[1] == 'activated':        # O(n)
+            return f'{login}, добро пожаловать на сайт!'                                                        # O(1)
+        elif password == list(users_list.get(login))[0] and list(users_list.get(login))[1] == 'not_activated':  # O(n)
+            return f'{login}, пожалуйста, активируйте Вашу учетную запись'                                      # O(1)
         else:
-            return 'Неверный пароль'                                                                  # O(1)
+            return 'Неверный пароль'                                                                            # O(1)
     else:
-        return 'Вы еще не зарегистрированы в системе или ввели неверный логин'                        # O(1)
+        return 'Вы еще не зарегистрированы в системе или ввели неверный логин'                                  # O(1)
 
-    # Общая сложность: O(?)
+    # Общая сложность: O(n^2)
 
 # Проверка:
-print(autentification_1('Korben Dallas', 'Korben123'))
-print(autentification_1('Aknot', 'Arrr'))
-print(autentification_1('Lelo', 'dhcyrb4jbd'))
-print(autentification_1('Leeloo', 'dcyrbjd'))
+print(autentification_1(users, 'Korben Dallas', 'Korben123'))
+print(autentification_1(users, 'Aknot', 'Arrr'))
+print(autentification_1(users, 'Lelo', 'dhcyrb4jbd'))
+print(autentification_1(users, 'Leeloo', 'dcyrbjd'))
 
 
 # Решение №2
-def autentification_2(login: str, password: str):
-    if login not in users:                                                          # O(n)
-        return 'Вы еще не зарегистрированы в системе или ввели неверный логин'
-    for name in users:                                                              # O(n)
-        if login == name and users.get(name) == (password, 'activated'):            # O(1)
-            return f'{login}, добро пожаловать на сайт!'                            # O(1)
-        elif login == name and users.get(name) == (password, 'not_activated'):      # O(1)
-            return f'{login}, пожалуйста, активируйте Вашу учетную запись'          # O(1)
-        elif login == name and list(users.get(name))[0] != password:                # O(?)
-            return 'Неверный пароль'                                                # O(1)
-    # Общая сложность: O(?)
+def autentification_2(users_list: dict, login: str, password: str):
+    for key, val in users_list.items():                                         # O(n)
+        if key == login:                                                        # O(1)
+            if val[0] == password and val[1] == 'activated':                    # O(1)
+                return f'{login}, добро пожаловать на сайт!'                    # O(1)
+            elif val[0] == password and val[1] == 'not_activated':              # O(1)
+                return f'{login}, пожалуйста, активируйте Вашу учетную запись'  # O(1)
+            elif val[0] != password:                                            # O(1)
+                return 'Неверный пароль'                                        # O(1)
+
+    return 'Вы еще не зарегистрированы в системе или ввели неверный логин'      # O(1)
+
+    # Общая сложность: O(n)
+
+
 
 
 # Проверка:
 print('--------------------')
-print(autentification_2('Ruby Rhood', 'yesBaby#@!'))
-print(autentification_2('Emanuel Zorg', 'StoNeS'))
-print(autentification_2('Aknot', 'Mrrr'))
-print(autentification_2('user', '12345'))
+print(autentification_2(users, 'Ruby Rhood', 'yesBaby#@!'))
+print(autentification_2(users, 'Emanuel Zorg', 'StoNeS'))
+print(autentification_2(users, 'Aknot', 'Mrrr'))
+print(autentification_2(users, 'user', '12345'))
 
 """
-Решение № эффективнее, так как 
+Решение №2 эффективнее, так как сложность O(n) меньше, чем сложность O(n^2)
 """

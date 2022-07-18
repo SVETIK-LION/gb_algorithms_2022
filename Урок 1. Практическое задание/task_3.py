@@ -37,8 +37,8 @@ def three_largest_profit_1(information: dict):
             if information[j] == i:                            # O(1)
                 sorted_dict[j] = information[j]                # O(1)
                 break
-    return list(sorted_dict.items())[0:3]               # O(1) + O(len(dict)) + (O[0:3] => O(1))
-    # Общая сложность: O(n * log(n)) + O(n**2) = O(n**2)
+    return list(sorted_dict.items())[0:3]               # O(1) + O(len(dict)) + O([0:3]) => O(n))
+    # Общая сложность: O(n * log(n)) + O(n**2) + O(n) = O(n**2)
 
 
 print(three_largest_profit_1(companies))
@@ -52,8 +52,8 @@ def three_largest_profit_2(information: dict):
     for i in sorted_keys:                   # O(n)
         sorted_dict[i] = information[i]            # O(1)
 
-    return list(sorted_dict.items())[0:3]   # (O(1) + O(len(dict)) + O[0:3]) => O(1)
-    # Общая сложность: O(n * log(n)) + O(n) = O(n * log(n))
+    return list(sorted_dict.items())[0:3]   # O(1) + O(len(dict)) + O([0:3]) => O(n)
+    # Общая сложность: O(n * log(n)) + O(n) + O(n) = O(n * log(n))
 
 
 print(three_largest_profit_2(companies))
