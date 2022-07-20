@@ -19,44 +19,60 @@
 """
 
 
-class StackOfPlates:
-    def __init__(self):
-        # На стол может поместиться 8 стопок тарелок
-        self.elems = [[], [], [], [], [], [], [], []]
+class StackPlatesClass:
+    def __init__(self, size):
+        self.elems = [[]]
+        self.size = size      # Размер одной стопки тарелок
+
+    def __str__(self):
+        return str(self.elems)
 
     def is_empty(self):
-        return self.elems == []
+        return self.elems == [[]]
 
     def push_in(self, el):
-        # Предположим, что в стопке может быть не более 10 тарелок
-        for i in range(0, len(self.elems)):
-            if len(self.elems[i]) < 10:
-                self.elems[i].append(el)
-                break
-
-
-
+        if len(self.elems[len(self.elems) - 1]) < self.size:
+            self.elems[len(self.elems) - 1].append(el)
+        else:
+            self.elems.append([])
+            self.elems[len(self.elems) - 1].append(el)
 
     def pop_out(self):
-        self.elems.pop()
+        if self.elems[len(self.elems) - 1] == []:
+            self.elems.pop()
+        result = self.elems[len(self.elems) - 1].pop()
+        return result
 
     def get_val(self):
-        return self.elems[len(self.elems) - 1]
+        return self.elems[len(self.elems) - 1]  # Последняя стопка тарелок
 
-    def amount_plates(self):
+    def plates_count(self):  # Тарелок всего
+        count = 0
+        for p in self.elems:
+            count += len(p)
+        return count
+
+    def stack_count(self):  # Стопок тарелок всего
         return len(self.elems)
 
 
 if __name__ == '__main__':
-
-    stack_1 = StackOfPlates()
-    stack_1.is_empty()
-    print(stack_1.elems)
-
-    i = 0
-    # В цикле while указываем количество тарелок, которые мы хотим поместить на стол
-    while i <= 74:
-        stack_1.push_in(i)
-        i += 1
-
-    print(stack_1.elems)
+    plates = StackPlatesClass(3)
+    print(plates)
+    plates.push_in('plate_one')
+    plates.push_in('plate_two')
+    plates.push_in('plate_three')
+    plates.push_in('plate_four')
+    plates.push_in('plate_five')
+    plates.push_in('plate_six')
+    plates.push_in('plate_seven')
+    print(plates)
+    plates.pop_out()
+    plates.pop_out()
+    plates.pop_out()
+    plates.pop_out()
+    plates.pop_out()
+    print(plates)
+    print(plates.get_val())
+    print(plates.plates_count())
+    print(plates.stack_count())

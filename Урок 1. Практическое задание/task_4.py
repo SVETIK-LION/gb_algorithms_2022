@@ -49,6 +49,7 @@ def autentification_1(users_list: dict, login: str, password: str):
 
     # Общая сложность: O(n^2)
 
+
 # Проверка:
 print(autentification_1(users, 'Korben Dallas', 'Korben123'))
 print(autentification_1(users, 'Aknot', 'Arrr'))
@@ -70,8 +71,6 @@ def autentification_2(users_list: dict, login: str, password: str):
     return 'Вы еще не зарегистрированы в системе или ввели неверный логин'      # O(1)
 
     # Общая сложность: O(n)
-
-
 
 
 # Проверка:
