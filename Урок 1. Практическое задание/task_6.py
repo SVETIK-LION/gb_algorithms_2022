@@ -96,4 +96,3 @@ if __name__ == '__main__':
     task_board.from_work_to_base()
     # Базовая очередь
     print(task_board.base_queue.tasks)
-
