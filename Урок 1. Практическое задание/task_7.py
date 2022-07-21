@@ -29,13 +29,31 @@ class DecueClass:
         self.elems.append(el)
 
     def del_start(self):
-        self.elems.pop(0)
+        return self.elems.pop(0)
 
     def del_end(self):
-        self.elems.pop()
+        return self.elems.pop()
 
     def elems_amount(self):
         return len(self.elems)
+
+
+# Проверка на палиндром
+def is_palindrome(string: str):
+    pal_decue = DecueClass()
+
+    for el in string.lower().replace(' ', ''):
+        pal_decue.add_to_start(el)
+
+    equal = True
+
+    while pal_decue.elems_amount() > 1 and equal:
+        start_el = pal_decue.del_start()
+        end_el = pal_decue.del_end()
+        if start_el != end_el:
+            equal = False
+
+    return equal
 
 
 if __name__ == '__main__':
@@ -58,3 +76,5 @@ if __name__ == '__main__':
     print(my_deque.elems)
     # Количество элементов в деке
     print(my_deque.elems_amount())
+    # Проверим палиндром
+    print(is_palindrome('молоко делили ледоколом'))
