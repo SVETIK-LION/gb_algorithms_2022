@@ -21,6 +21,11 @@
 
 
 def revers_num(num: int, result=''):
+    """
+    :param num: Число, которое нужно перевернуть
+    :param result: Результат
+    :return: Возвращает перевернутое число в формате строки
+    """
     if num == 0:
         print(f'Перевернутое число: {result}')
     else:
