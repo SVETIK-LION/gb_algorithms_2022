@@ -14,7 +14,7 @@ from random import randint
 
 def guess_number(number, attempts_count):
     """
-    Игра "Угадай число"
+    Игра "Угадай число" \n
     :param number: Загаданное число
     :param attempts_count: Число попыток
     :return: Результат угадывания
@@ -36,5 +36,5 @@ def guess_number(number, attempts_count):
 
 try:
     guess_number(randint(0, 100), 1)
-except ValueError:
-    print('Неверное значение. Введите целое число от 0 до 100')
+except NameError:
+    print('Неверное значение')

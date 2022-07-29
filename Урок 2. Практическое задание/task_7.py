@@ -13,3 +13,29 @@
 
 Решите через рекурсию. В задании нельзя применять циклы.
 """
+
+
+def check_equality(n, elem , left_sum):
+    """
+    Доказывает равенство для множества натуральных чисел от 1 до n \n
+    :param n: Конечно число последовательности
+    :param elem: начальный элемент - 1
+    :param left_sum: начальная сумма чисел в левой части выражения
+    :return: Равенство верно
+    """
+    right_sum = int(n * (n + 1) / 2)
+
+    if elem > n:
+        if left_sum - right_sum == 0:
+            print(f'{left_sum} = {right_sum}. Что и требовалось доказать')
+        else:
+            print('Что-то пошло не так')
+    else:
+        left_sum += elem
+        return check_equality(n, elem + 1, left_sum)
+
+
+try:
+    check_equality(7, 1, 0)
+except NameError:
+    print('Неверное значение.')
