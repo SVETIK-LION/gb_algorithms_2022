@@ -36,6 +36,7 @@ def check_equality(n, elem , left_sum):
 
 
 try:
-    check_equality(7, 1, 0)
-except NameError:
-    print('Неверное значение.')
+    num = int(input('Введите целое положительное число: '))
+    check_equality(num, 1, 0)
+except ValueError:
+    print('Неверное значение. Введите целое положительное число')

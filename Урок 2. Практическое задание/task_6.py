@@ -36,5 +36,5 @@ def guess_number(number, attempts_count):
 
 try:
     guess_number(randint(0, 100), 1)
-except NameError:
-    print('Неверное значение')
+except ValueError:
+    print('Неверное значение. Введите целое число от 0 до 100')
