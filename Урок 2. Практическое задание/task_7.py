@@ -15,7 +15,7 @@
 """
 
 
-def check_equality(n, elem , left_sum):
+def check_equality(n, elem, left_sum):
     """
     Доказывает равенство для множества натуральных чисел от 1 до n \n
     :param n: Конечно число последовательности
