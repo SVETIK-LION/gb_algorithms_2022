@@ -17,3 +17,29 @@
 Введите число: 123
 Количество четных и нечетных цифр в числе равно: (1, 2)
 """
+
+
+def even_odd_counter(num: int, even=0, odd=0):
+    """
+    :param num: Число, которое Вы ввели для проверки
+    :param even: Четные цифры
+    :param odd: Нечетные цифры
+    :return: Возвращает количество четных и нечетных цифр числа
+    """
+    if num == 0:
+        print(f'Четных чисел: {even}. Нечетных чисел: {odd}')
+    else:
+        digit = num % 10
+        if digit % 2 == 0:
+            even += 1
+        else:
+            odd += 1
+        num = num // 10
+        return even_odd_counter(num, even, odd)
+
+
+try:
+    number = int(input('Введите целое число: '))
+    even_odd_counter(number)
+except ValueError:
+    print(f'Неверные данные. Введите целое число')
