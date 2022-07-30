@@ -33,8 +33,12 @@ b) получение элемента списка, оцените сложно
 from time import time
 
 
-# Функция-декоратор, которая будет считать время исполнения
 def how_much_time(func):
+    """
+    Функция-декоратор, которая считает время исполнения декорируемой функции\n
+    :param func: Декорируемая функция
+    :return: Время выполнения в формате f-строки
+    """
     def wrapper(*args, **kwargs):
         start = time()
         our_funct = func(*args, **kwargs)
@@ -45,20 +49,80 @@ def how_much_time(func):
     return wrapper
 
 
-# a) Функция, заполнения списка
+# a)
+# Функция, заполнения списка. Сложность O(1)
 @how_much_time
-def fill_lst(lst, numbers):
+def fill_lst(lst: list, numbers: int):
     """
     Заполняет заданный список числами от 0 до numbers включительно\n
     :param lst: Заданный список
     :param numbers: Макимальное число
-    :return: Возвращает заполненный список
+    :return:
     """
     for i in range(numbers + 1):
         lst.append(i)
 
-    return lst
+    return True
 
 
 my_list = []
-print(fill_lst(my_list, 100))
+fill_lst(my_list, 100000000)
+
+
+# Функция, заполнения словаря. Сложность O(1)
+@how_much_time
+def fill_dict(di: dict, numbers: int):
+    """
+    Заполняет словарь парами ключ-значение от 0 до заданного числа numbers включительно\n
+    :param di: Заданный словарь
+    :param numbers: Максимальное чило пар
+    :return:
+    """
+    for i in range(numbers + 1):
+        di[i] = i
+
+    return True
+
+
+my_dict = {}
+fill_dict(my_dict, 100000000)
+
+
+# Время выполнения функции fill_lst: 2.9917619228363037
+# Время выполнения функции fill_dict: 7.632849931716919
+# Список заполняется быстрее, чем словарь. Это происходит потому что в словаре используется хэш-таблица и нужно время на вычисление места.
+# А в спискок просто в конец добавляется элемент
+
+
+# b)
+# Получение элемента списка
+@how_much_time
+def get_elem_lst(lst: list):
+    """
+    Получает по очерди каждый элемент списка\n
+    :param lst: Заданный список
+    :return:
+    """
+    for i in range(len(lst)):
+        elem = lst[i]
+
+    return True
+
+
+get_elem_lst(my_list)
+
+# Получение элемента словаря
+@how_much_time
+def get_elem_dict(di: dict):
+    """
+    Получает по очереди каждое значение словаря\n
+    :param di: Заданный словарь
+    :return:
+    """
+    for i in range(len(di)):
+        val = di[i]
+
+    return True
+
+
+get_elem_dict(my_dict)
