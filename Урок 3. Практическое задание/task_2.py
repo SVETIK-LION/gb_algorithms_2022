@@ -42,9 +42,10 @@ def check_password(psswd: str):
     print(f'Хэш1: {hash_1}')
 
     # Записываем соль и хэш в БД. Делаем INSERT запрос к базе данных, используя обычный SQL-синтаксис
-    cursor.execute(f"INSERT INTO hashes (salt, hash) VALUES ('{salt}', '{hash_1}')")
+    cursor.execute("INSERT INTO hashes (salt, hash) VALUES (%s, %s)", (salt, hash_1))
     # Проверка
-    cursor.execute("SELECT salt, hash FROM hashes ORDER BY hash LIMIT 3")
+    q = cursor.execute("SELECT hash FROM hashes ORDER BY id LIMIT 4")
+    print(f'QQQQQQ {q}')
     results = cursor.fetchall()
     print(f'В базе данных хранится строка: {results}')
 
