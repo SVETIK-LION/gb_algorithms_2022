@@ -25,14 +25,16 @@ f1dcaeeafeb855965535d77c55782349444b
 
 
 import hashlib
+from uuid import uuid4
 
 
 def check_password(psswd: str):
-    hash_obj_1 = hashlib.sha256(psswd.encode('utf-8'))
+    salt = uuid4().hex
+    hash_obj_1 = hashlib.sha256(salt.encode() + psswd.encode())
     hash_1 = hash_obj_1.hexdigest()
     print(f'В базе данных хранится строка: {hash_1}')
     password_2 = input('Введите пароль еще раз для проверки: ')
-    hash_obj_2 = hashlib.sha256(password_2.encode('utf-8'))
+    hash_obj_2 = hashlib.sha256(salt.encode() + password_2.encode())
     hash_2 = hash_obj_2.hexdigest()
     if hash_1 == hash_2:
         print('Вы ввели правильный пароль')
