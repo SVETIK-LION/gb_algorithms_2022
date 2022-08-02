@@ -44,8 +44,7 @@ def check_password(psswd: str):
     # Записываем соль и хэш в БД. Делаем INSERT запрос к базе данных, используя обычный SQL-синтаксис
     cursor.execute("INSERT INTO hashes (salt, hash) VALUES (%s, %s)", (salt, hash_1))
     # Проверка
-    q = cursor.execute("SELECT hash FROM hashes ORDER BY id LIMIT 4")
-    print(f'QQQQQQ {q}')
+    cursor.execute("SELECT hash FROM hashes ORDER BY id LIMIT 4")
     results = cursor.fetchall()
     print(f'В базе данных хранится строка: {results}')
 
