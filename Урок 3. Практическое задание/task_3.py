@@ -32,8 +32,8 @@ def count_substrings(string: str):
     for i in range(len(string)):
         for j in range(i + 1, len(string) + 1):
             if string[i:j] != string:
-                 substrings_set.add(hashlib.sha256(string[i:j].encode()).hexdigest())
-                 print(string[i:j], end=' ')
+                substrings_set.add(hashlib.sha256(string[i:j].encode()).hexdigest())
+                print(string[i:j], end=' ')
 
     print(f'\nМножество хэшей подстрок: {substrings_set}')
     print(f'Уникальных подстрок в строке "{string}": {len(substrings_set)}')
