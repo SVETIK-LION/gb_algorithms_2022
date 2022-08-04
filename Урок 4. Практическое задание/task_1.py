@@ -13,9 +13,32 @@
 """
 
 
+from timeit import timeit
+
+
 def func_1(nums):
     new_arr = []
     for i in range(len(nums)):
         if nums[i] % 2 == 0:
             new_arr.append(i)
     return new_arr
+
+
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+print(f'Результат работы функции func_1: {func_1(numbers)}')
+print(f'Время выполнения: {timeit("func_1(numbers)", globals=globals(), number=10000)}')
+
+
+def func_2(nums):
+    new_arr = [i for i in range(len(nums)) if nums[i] % 2 == 0]
+    return new_arr
+
+
+print(f'Результат работы оптимизированной функции func_2: {func_2(numbers)}')
+print(f'Время выполнения: {timeit("func_2(numbers)", globals=globals(), number=10000)}')
+
+
+"""
+Оптимизировала функцию с помощью list comprehension. Программа стала выполняться быстрее. Это происходит потому что
+в list comprehension не вызывается метод append.
+"""
