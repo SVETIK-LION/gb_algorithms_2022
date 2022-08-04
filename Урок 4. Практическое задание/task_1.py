@@ -24,7 +24,7 @@ def func_1(nums):
     return new_arr
 
 
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+numbers = [elem for elem in range(10000)]
 print(f'Результат работы функции func_1: {func_1(numbers)}')
 print(f'Время выполнения: {timeit("func_1(numbers)", globals=globals(), number=10000)}')
 
@@ -39,6 +39,6 @@ print(f'Время выполнения: {timeit("func_2(numbers)", globals=glob
 
 
 """
-Оптимизировала функцию с помощью list comprehension. Программа стала выполняться быстрее. Это происходит потому что
-в list comprehension не вызывается метод append.
+Оптимизировала функцию с помощью list comprehension. Программа стала выполняться быстрее примерно на 19%.
+Это достигается за счет того, что в list comprehension не вызывается метод append.
 """
