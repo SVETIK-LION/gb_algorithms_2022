@@ -133,12 +133,12 @@ print(f'extend_deque {timeit("extend_deque(my_deque)", globals=globals(), number
 
 
 # Результаты 1:
-# append_list 0.047495040998910554
-# append_deque 0.048215916998742614
-# pop_list 0.048307916997146094
-# pop_deque 0.050239625001267996
-# extend_list 0.09177779099991312
-# extend_deque 0.12079112499850453
+# append_list 0.00454708300094353
+# append_deque 0.004332791002525482
+# pop_list 0.0038144170030136593
+# pop_deque 0.003993917001935188
+# extend_list 0.006870125005661976
+# extend_deque 0.008238667003752198
 
 
 # 2)
@@ -151,23 +151,25 @@ print(f'extendleft_deque {timeit("extendleft_deque(my_deque)", globals=globals()
 
 
 # Результаты 2:
-# appendleft_list 27.02602562499669
-# appenfleft_deque 0.005118958004459273
-# popleft_list 8.784314374999667
-# popleft_deque 0.0047307909990195185
-# extendleft_list 27.325117916996533
-# extendleft_deque 0.011844332999316975
+# appendleft_list 16.82102566699905
+# appenfleft_deque 0.002963375001854729
+# popleft_list 5.624405999995361
+# popleft_deque 0.003164249996189028
+# extendleft_list 16.954046999999264
+# extendleft_deque 0.006987749999098014
 
 
 print(f'get_element_list {timeit("get_element_list(my_list)", globals=globals(), number=100)}')
-print(f'get_element_list {timeit("get_element_list(my_deque)", globals=globals(), number=100)}')
+print(f'get_element_deque {timeit("get_element_deque(my_deque)", globals=globals(), number=100)}')
 
 
 # Результаты 3:
-# get_element_list 0.0038214590022107586
-# get_element_list 0.004483041004277766
+# get_element_list 0.0020382080037961714
+# get_element_deque 0.003125124996586237
 
 
 """
-Методы для объекта deque модуля collections работают быстрее, чем аналогичные методы для list.
+1) Методы append, pop, extend для deque и list работают с примерно одинаковой скоростью.
+2) Методы appendleft, popleft, extendleft для deque работают намного быстрее, чем аналогичные методы для list.
+3) Получение элемента из list происходит примерно с такой же скоростью, как и из deque.
 """
