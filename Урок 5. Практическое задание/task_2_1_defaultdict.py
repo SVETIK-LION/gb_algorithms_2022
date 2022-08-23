@@ -50,7 +50,7 @@ def hex_calc():
     sum_nums_10 = sum(conver_nums)
     mult_nums_10 = functools.reduce(lambda a, b: a * b, conver_nums)
 
-    sum_nums_16 = list(hex(sum_nums_10).upper()[2:])
+    sum_nums_16 = list(hex(sum_nums_10).upper()[2:])    # Переводим обратно в 16-ю систему
     mult_nums_16 = list(hex(mult_nums_10).upper()[2:])
 
     return f'Сумма чисел: {sum_nums_16}\nПроизведение: {mult_nums_16}'
