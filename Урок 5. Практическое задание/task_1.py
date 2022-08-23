@@ -11,7 +11,7 @@
 Подсказка:
 Для решения задачи обязательно примените коллекцию из модуля collections
 Для лучшего освоения материала можете сделать
-несколько варианто решения этого задания,
+несколько вариантов решения этого задания,
 применив несколько коллекций из модуля collections
 
 Пример:
@@ -30,16 +30,35 @@
 """
 
 
-import collections
+from collections import namedtuple
 
 
 def avg_profit():
-    profit = []
+    result_profit = {}
     amount = int(input('Введите количество предриятий для рассчета прибыли: '))
+    companies = namedtuple('Company', 'name quarter_1 quarter_2 quarter_3 quarter_4')
     for i in range(amount):
-        name = input('Введиите название предприятия: ')
-        quarter_1 = int(input('Введите прибыль предприятия за первый квартал: '))
-        quarter_2 = int(input('Введите прибыль предприятия за второй квартал: '))
-        quarter_3 = int(input('Введите прибыль предприятия за третий квартал: '))
-        quarter_4 = int(input('Введите прибыль предприятия за четвертый квартал: '))
+        company = companies(name=input('Введиите название предприятия: '),
+                            quarter_1=int(input('Введите прибыль предприятия за первый квартал: ')),
+                            quarter_2=int(input('Введите прибыль предприятия за второй квартал: ')),
+                            quarter_3=int(input('Введите прибыль предприятия за третий квартал: ')),
+                            quarter_4=int(input('Введите прибыль предприятия за четвертый квартал: ')))
 
+        result_profit[company.name] = (company.quarter_1 + company.quarter_2 +
+                                       company.quarter_3 + company.quarter_4) / 4
+
+    total_avg_profit = 0
+    for val in result_profit.values():
+        total_avg_profit += val
+        total_avg_profit = total_avg_profit / amount
+
+    print(f'Средняя годовая прибыль всех предприятий: {total_avg_profit}')
+
+    for key, val in result_profit.items():
+        if val > total_avg_profit:
+            print(f'Предприятия, с прибылью выше среднего значения: {key}')
+        elif val < total_avg_profit:
+            print(f'Предприятия, с прибылью ниже среднего значения: {key}')
+
+
+avg_profit()
