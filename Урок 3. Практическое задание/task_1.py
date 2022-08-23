@@ -106,10 +106,10 @@ def get_elem_list(lst: list, n: int):
     :param n: Количество элементов
     :return:
     """
+    elem = 0
     for i in range(n):
         elem = lst[i]
-
-    return True
+    return elem
 
 
 get_elem_list(my_list, 1000)
@@ -122,12 +122,12 @@ def get_elem_dict(di: dict, n: int):
     Получает n элементов словаря\n
     :param di: Заданный словарь
     :param n: Количество элементов
-    :return:
+    :return val:
     """
+    val = 0
     for i in range(n):
         val = di[i]
-
-    return True
+    return val
 
 
 get_elem_dict(my_dict, 1000)
@@ -149,12 +149,11 @@ def del_elem_list(lst: list, n: int):
     Удаляет элемент из списка\n
     :param lst: Заданный список
     :param n: Количество удаляемых элементов
-    :return:
+    :return lst:
     """
     for i in range(n):
         lst.pop(i)
-
-    return True
+    return lst
 
 
 del_elem_list(my_list, 1000)
@@ -167,12 +166,11 @@ def del_elem_dict(di: dict, n: int):
     Удаляет элемент из словаря\n
     :param di: Заданный словарь
     :param n: Количество удаляемых элементов
-    :return:
+    :return di:
     """
     for i in range(n):
         di.pop(i)
-
-    return True
+    return di
 
 
 del_elem_dict(my_dict, 1000)
