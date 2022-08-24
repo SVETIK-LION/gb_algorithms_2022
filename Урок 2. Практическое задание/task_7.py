@@ -13,3 +13,25 @@
 
 Решите через рекурсию. В задании нельзя применять циклы.
 """
+
+
+def check_equality(number: int):
+    """
+    Доказывает равенство для множества натуральных чисел от 1 до n \n
+    :param number: Конечное число последовательности
+    :return: Верно ли равенство
+    """
+    if number == 1:
+        return number
+    else:
+        return check_equality(number - 1) + number
+
+
+try:
+    num = int(input('Введите целое положительное число: '))
+    if check_equality(num) == num * (num + 1) / 2:
+        print('Верное равенство!')
+    else:
+        print('Что-то пошло не так. Равенство не верно.')
+except ValueError:
+    print('Неверное значение. Введите целое положительное число')

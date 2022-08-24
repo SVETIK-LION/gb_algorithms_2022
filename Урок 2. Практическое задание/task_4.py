@@ -10,3 +10,24 @@
 Решите через рекурсию. В задании нельзя применять циклы.
 Нужно обойтисть без создания массива!
 """
+
+
+def sum_nums_line(n: int, elem: float, count: int, sum_numbers: float):
+    """
+    :param n: Количество элементов ряда
+    :param elem: Первый элемент ряда
+    :param count: Сколько элесентов уже есть в ряде
+    :param sum_numbers: Начальная сумма элементов
+    :return: Возвращает сумму элементов ряда
+    """
+    if count == n:
+        print(f'Сумма {n} элементов ряда равна: {sum_numbers}')
+    else:
+        return sum_nums_line(n, elem / 2 * (-1), count + 1, sum_numbers + elem)
+
+
+try:
+    n_elems = int(input('Введите количество элементов ряда(целое положительное число): '))
+    sum_nums_line(n_elems, 1, 0, 0)
+except ValueError:
+    print('Неверное значение. Введите целое положительное число')

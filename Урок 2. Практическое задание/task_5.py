@@ -19,3 +19,15 @@
 
 Допускается исп-е встроенных ф-ций
 """
+
+
+def ascii_symbols(num_symbol=32):
+    if num_symbol == 128:
+        return
+    print(f'{num_symbol} - {chr(num_symbol)}', end=' ')
+    if (num_symbol - 31) % 10 == 0:
+        print('\n')
+    ascii_symbols(num_symbol + 1)
+
+
+ascii_symbols()

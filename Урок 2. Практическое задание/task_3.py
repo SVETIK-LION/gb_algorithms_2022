@@ -18,3 +18,25 @@
 Не забудьте проверить на числе, которое оканчивается на 0.
 1230 -> 0321
 """
+
+
+def revers_num(num: int, result=''):
+    """
+    :param num: Число, которое нужно перевернуть
+    :param result: Результат
+    :return: Возвращает перевернутое число в формате строки
+    """
+    if num == 0:
+        print(f'Перевернутое число: {result}')
+    else:
+        digit = num % 10
+        result += str(digit)
+        num //= 10
+        revers_num(num, result)
+
+
+try:
+    number = int(input('Введите целое число, которое нужно перевернуть: '))
+    revers_num(number)
+except ValueError:
+    print('Неверное значение. Введите целое число')
