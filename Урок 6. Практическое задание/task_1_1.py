@@ -30,3 +30,29 @@
 
 Это файл для первого скрипта
 """
+
+
+from memory_profiler import profile
+
+
+# Исходная функция
+def convert_name_extract_1(list_in: list) -> list:
+    """Извлекает имена из элементов и формирует список приветствий."""
+    for i in range(len(list_in)):
+        list_in[i] = list_in[i].title().split()
+        list_in[i] = f"Привет, {list_in[i][-1]}!"
+    list_in =
+
+
+# Оптимизированная функция
+def convert_name_extract_2(list_in: list) -> list:
+    """Извлекает имена из элементов и формирует список приветствий."""
+    for i in range(len(list_in)):
+        list_in[i] = list_in[i].title().split()
+        list_in[i] = f"Привет, {list_in[i][-1]}!"
+        yield list_in[i]
+
+
+my_list = ['инженер-конструктор Игорь', 'главный бухгалтер МАРИНА', 'токарь высшего разряда нИКОЛАй', 'директор аэлита']
+result = convert_name_extract(my_list)
+print(list(result))
