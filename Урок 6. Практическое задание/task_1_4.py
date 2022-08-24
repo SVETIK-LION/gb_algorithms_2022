@@ -41,6 +41,7 @@ numbers = [elem for elem in range(1000)]
 
 
 # Урок 4 задание 1
+# Исходная функция
 def func_1(nums):
     new_arr_1 = [i for i in range(len(nums)) if nums[i] % 2 == 0]
     return asizeof.asizeof(new_arr_1)
@@ -50,6 +51,7 @@ print(f'Занимает объект 1: {func_1(numbers)}')
 print(f'Время выполнения func_1: {timeit("func_1(numbers)", globals=globals(), number=10000)}')
 
 
+# Оптимизированная функция
 def func_2(nums):
     new_arr_2 = array([i for i in range(len(nums)) if nums[i] % 2 == 0])
     return asizeof.asizeof(new_arr_2)
