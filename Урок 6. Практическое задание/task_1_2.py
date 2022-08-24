@@ -35,8 +35,9 @@
 from collections import namedtuple
 from recordclass import recordclass
 import sys
+from memory_profiler import profile
 
-
+@profile
 def avg_profit_1():
     result_profit = {}
     amount = int(input('Введите количество предриятий для рассчета прибыли: '))
@@ -70,6 +71,7 @@ def avg_profit_1():
 avg_profit_1()
 
 
+@profile
 def avg_profit_2():
     result_profit = {}
     amount = int(input('Введите количество предриятий для рассчета прибыли: '))
@@ -101,6 +103,7 @@ def avg_profit_2():
 
 
 avg_profit_2()
+
 
 # Объем занимаемой памяти объектом namedtuple: 904
 # Объем занимаемой памяти объектом recordclass: 1072

@@ -36,31 +36,38 @@ from memory_profiler import profile
 
 
 # Исходная функция
-@profile
-def convert_name_extract_1(list_in: list) -> list:
-    """Извлекает имена из элементов и формирует список приветствий."""
-    for i in range(len(list_in)):
-        list_in[i] = list_in[i].title().split()
-        list_in[i] = f"Привет, {list_in[i][-1]}!"
-    list_out = list_in
-    return list_out
+from collections import defaultdict
+import functools
 
 
-my_list_1 = ['инженер-конструктор Игорь', 'главный бухгалтер МАРИНА', 'токарь высшего разряда нИКОЛАй', 'директор аэлита']
-result_1 = convert_name_extract_1(my_list_1)
-print(result_1)
+def hex_calc():
+    """
+    Возвращает сумму и произведение чисел в шестнадцатеричной системе\n
+    :return:list
+    """
+    numbers = defaultdict(list)
+    conver_nums = []
+
+    digit_1 = input(f'Введите первое натуральное шестнадцатеричное число: ')
+    digit_2 = input(f'Введите второе натуральное шестнадцатеричное число: ')
+    numbers[digit_1] = list(digit_1)
+    numbers[digit_2] = list(digit_2)
+
+    for val in numbers.values():
+        conver_digit = int(''.join(val), 16)  # Преобразуем в 10-ю систему
+        conver_nums.append(conver_digit)
+
+    sum_nums_10 = sum(conver_nums)
+    mult_nums_10 = functools.reduce(lambda a, b: a * b, conver_nums)
+
+    sum_nums_16 = list(hex(sum_nums_10).upper()[2:])    # Переводим обратно в 16-ю систему
+    mult_nums_16 = list(hex(mult_nums_10).upper()[2:])
+
+    return f'Сумма чисел: {sum_nums_16}\nПроизведение: {mult_nums_16}'
 
 
-# Оптимизированная функция
-@profile
-def convert_name_extract_2(list_in: list) -> list:
-    """Извлекает имена из элементов и формирует список приветствий."""
-    for i in range(len(list_in)):
-        list_in[i] = list_in[i].title().split()
-        list_in[i] = f"Привет, {list_in[i][-1]}!"
-        yield list_in[i]
 
 
-my_list_2 = ['инженер-конструктор Игорь', 'главный бухгалтер МАРИНА', 'токарь высшего разряда нИКОЛАй', 'директор аэлита']
-result_2 = convert_name_extract_2(my_list_2)
-print(list(result_2))
+
+
+print(hex_calc())
