@@ -15,28 +15,23 @@
 """
 
 
-def check_equality(n, elem, left_sum):
+def check_equality(number: int):
     """
     Доказывает равенство для множества натуральных чисел от 1 до n \n
-    :param n: Конечно число последовательности
-    :param elem: начальный элемент - 1
-    :param left_sum: начальная сумма чисел в левой части выражения
-    :return: Равенство верно
+    :param number: Конечное число последовательности
+    :return: Верно ли равенство
     """
-    right_sum = int(n * (n + 1) / 2)
-
-    if elem > n:
-        if left_sum - right_sum == 0:
-            print(f'{left_sum} = {right_sum}. Что и требовалось доказать')
-        else:
-            print('Что-то пошло не так')
+    if number == 1:
+        return number
     else:
-        left_sum += elem
-        return check_equality(n, elem + 1, left_sum)
+        return check_equality(number - 1) + number
 
 
 try:
     num = int(input('Введите целое положительное число: '))
-    check_equality(num, 1, 0)
+    if check_equality(num) == num * (num + 1) / 2:
+        print('Верное равенство!')
+    else:
+        print('Что-то пошло не так. Равенство не верно.')
 except ValueError:
     print('Неверное значение. Введите целое положительное число')
