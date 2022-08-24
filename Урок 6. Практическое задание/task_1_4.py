@@ -30,3 +30,26 @@
 
 Это файл для четвертого скрипта
 """
+
+
+from pympler import asizeof
+from numpy import array
+
+
+# Урок 4 задание 1
+def func_1(nums):
+    new_arr_1 = [i for i in range(len(nums)) if nums[i] % 2 == 0]
+    return new_arr_1
+
+
+print(f'Результат работы оптимизированной функции func_1: {func_1(numbers)}')
+print(f'Время выполнения: {timeit("func_1(numbers)", globals=globals(), number=10000)}')
+
+
+def func_2(nums):
+    new_arr_2 = array([i for i in range(len(nums)) if nums[i] % 2 == 0])
+    return new_arr_2
+
+
+print(f'Результат работы оптимизированной функции func_2: {func_2(numbers)}')
+print(f'Время выполнения: {timeit("func_2(numbers)", globals=globals(), number=10000)}')
