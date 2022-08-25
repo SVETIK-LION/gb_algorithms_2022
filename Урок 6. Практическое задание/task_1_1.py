@@ -32,42 +32,38 @@
 """
 
 
-from memory_profiler import profile
+from memory_profiler import memory_usage
+
+
+def decor(func):
+    def wrapper(*args, **kvargs):
+        m_1 = memory_usage()
+        res = func(args[0])
+        m_2 = memory_usage()
+        mem_dif = m_1[0] - m_2[0]
+        return res, mem_dif
+    return wrapper
+
+
 
 
 # Исходная функция
-from collections import defaultdict
-import functools
+@decor
+def append_list_1(lst):
+    for i in range(10000):
+        lst.append(i)
+    return lst
+
+# О
+@decor
+def append_list_2(lst):
+    for i in lst:
+        yield i
 
 
-def hex_calc():
-    """
-    Возвращает сумму и произведение чисел в шестнадцатеричной системе\n
-    :return:list
-    """
-    numbers = defaultdict(list)
-    conver_nums = []
-
-    digit_1 = input(f'Введите первое натуральное шестнадцатеричное число: ')
-    digit_2 = input(f'Введите второе натуральное шестнадцатеричное число: ')
-    numbers[digit_1] = list(digit_1)
-    numbers[digit_2] = list(digit_2)
-
-    for val in numbers.values():
-        conver_digit = int(''.join(val), 16)  # Преобразуем в 10-ю систему
-        conver_nums.append(conver_digit)
-
-    sum_nums_10 = sum(conver_nums)
-    mult_nums_10 = functools.reduce(lambda a, b: a * b, conver_nums)
-
-    sum_nums_16 = list(hex(sum_nums_10).upper()[2:])    # Переводим обратно в 16-ю систему
-    mult_nums_16 = list(hex(mult_nums_10).upper()[2:])
-
-    return f'Сумма чисел: {sum_nums_16}\nПроизведение: {mult_nums_16}'
+if __name__ == '__main__':
+    my_generator, mem_diff = append_list_2(list(range(10000)))
+    print(type(my_generator))
 
 
-
-
-
-
-print(hex_calc())
+    print(f'Выполнение заняло: {mem_diff} Mib')
