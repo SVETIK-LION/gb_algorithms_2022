@@ -13,6 +13,13 @@
 """
 
 
+class LeftKnotExeption(Exeption):
+    def __init__(self, left_child):
+        self.left_child = left_child
+
+
+
+
 class BinaryTree:
     def __init__(self, root_obj):
         # корень
