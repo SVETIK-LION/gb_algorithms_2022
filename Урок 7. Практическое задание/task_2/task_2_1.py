@@ -15,3 +15,31 @@
 
 сделайте замеры на массивах длиной 10, 100, 1000 элементов
 """
+
+
+from random import randint
+from timeit import timeit
+
+
+m = 1000
+my_list = [randint(0, 100) for i in range(2 * m + 1)]
+
+
+def gnome_sort(lst: list):
+    i = 1
+    while i < len(lst):
+        if not i or lst[i - 1] <= lst[i]:
+            i += 1
+        else:
+            lst[i - 1], lst[i] = lst[i], lst[i - 1]
+            i -= 1
+    return lst[m]
+
+
+print(f'Медиана: {gnome_sort(my_list)}')
+print(f'Время выполнения: {timeit("gnome_sort(my_list[:])", globals=globals(), number=100)}')
+
+
+# Время выполнения 10: 0.0002939160040114075
+# Время выполнения 100: 0.0028458750020945445
+# Время выполнения 1000: 0.01837933399656322
