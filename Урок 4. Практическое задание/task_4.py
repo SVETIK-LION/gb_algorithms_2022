@@ -10,6 +10,10 @@
 Сделайте замеры и опишите, получилось ли у вас ускорить задачу
 """
 
+
+from timeit import timeit
+
+
 array = [1, 3, 1, 3, 4, 5, 1]
 
 
@@ -37,5 +41,22 @@ def func_2():
            f'оно появилось в массиве {max_2} раз(а)'
 
 
+def func_3():
+    result = max(array, key=array.count)
+    return f'Чаще всего встречается число {result}, ' \
+           f'оно появилось в массиве {array.count(result)} раз(а)'
+
+
 print(func_1())
+print(timeit("func_1()", globals=globals(), number=10000))
+print()
 print(func_2())
+print(timeit("func_2()", globals=globals(), number=10000))
+print()
+print(func_3())
+print(timeit("func_3()", globals=globals(), number=10000))
+
+"""
+Нашу функцию можно оптимизировать, применив в функции max параметр key со значением count.
+Этот варинат будет работать быстрее всего, к тому же легче читается.
+"""
