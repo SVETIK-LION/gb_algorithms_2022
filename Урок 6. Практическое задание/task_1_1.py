@@ -35,37 +35,63 @@
 from memory_profiler import profile
 
 
-# Урок 2, задание 4
+# Урок 2, задание 2
 # Исходная функция
 @profile
-def sum_nums_line(n: int, elem: float, count: int, sum_numbers: float):
-    if count == n:
-        print(f'Сумма {n} элементов ряда равна: {sum_numbers}')
+def even_odd_counter_1(num: int, even=0, odd=0):
+    """
+    :param num: Число, которое Вы ввели для проверки
+    :param even: Четные цифры
+    :param odd: Нечетные цифры
+    :return: Возвращает количество четных и нечетных цифр числа
+    """
+    if num == 0:
+        print(f'Четных чисел: {even}. Нечетных чисел: {odd}')
     else:
-        return sum_nums_line(n, elem / 2 * (-1), count + 1, sum_numbers + elem)
+        digit = num % 10
+        if digit % 2 == 0:
+            even += 1
+        else:
+            odd += 1
+        num = num // 10
+        return even_odd_counter_1(num, even, odd)
 
 
 try:
-    n_elems = int(input('Введите количество элементов ряда(целое положительное число): '))
-    sum_nums_line(n_elems, 1, 0, 0)
+    number = int(input('Введите целое число: '))
+    even_odd_counter_1(number)
 except ValueError:
-    print('Неверное значение. Введите целое положительное число')
+    print(f'Неверные данные. Введите целое число')
 
 
 # Оптимизированная функция
 @profile
-def sum_nums_line_opt(amount_elems):
-    elem = 1
-    count = 0
-    for i in range(amount_elems):
-        count += 1
-        elem = -elem / 2
-    print(f'Сумма {amount_elems} элементов ряда равна: {count}')
+def even_odd_counter_2(num: int):
+    """
+    :param num: Число, которое Вы ввели для проверки
+    :return: Возвращает количество четных и нечетных цифр числа
+    """
+    even = 0
+    odd = 0
+    while num != 0:
+        digit = num % 10
+        if digit % 2 == 0:
+            even += 1
+            num = num // 10
+        else:
+            odd += 1
+            num = num // 10
 
+    return f'Четных чисел: {even}. Нечетных чисел: {odd}'
 
 
 try:
-    n_elems = int(input('Введите количество элементов ряда(целое положительное число): '))
-    sum_nums_line_opt(n_elems)
+    number = int(input('Введите целое число: '))
+    print(even_odd_counter_2(number))
 except ValueError:
-    print('Неверное значение. Введите целое положительное число')
+    print(f'Неверные данные. Введите целое число')
+
+
+"""
+Убрала рекурсию из функции, но почему-то занимает столько же места.
+"""
