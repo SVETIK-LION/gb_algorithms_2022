@@ -35,61 +35,49 @@
 from memory_profiler import profile
 
 
-# Урок 2, задание 2
+# Урок 2, задание 3
 # Исходная функция
+
+number = 1234
+
+
 @profile
-def even_odd_counter_1(num: int, even=0, odd=0):
+def revers_num(num: int, result=''):
     """
-    :param num: Число, которое Вы ввели для проверки
-    :param even: Четные цифры
-    :param odd: Нечетные цифры
-    :return: Возвращает количество четных и нечетных цифр числа
+    :param num: Число, которое нужно перевернуть
+    :param result: Результат
+    :return: Возвращает перевернутое число в формате строки
     """
     if num == 0:
-        print(f'Четных чисел: {even}. Нечетных чисел: {odd}')
+        return f'Перевернутое число: {result}'
     else:
         digit = num % 10
-        if digit % 2 == 0:
-            even += 1
-        else:
-            odd += 1
-        num = num // 10
-        return even_odd_counter_1(num, even, odd)
+        result += str(digit)
+        num //= 10
+        return revers_num(num, result)
 
 
-try:
-    number = int(input('Введите целое число: '))
-    even_odd_counter_1(number)
-except ValueError:
-    print(f'Неверные данные. Введите целое число')
+print(revers_num(number))
 
 
-# Оптимизированная функция
+# Опт
 @profile
-def even_odd_counter_2(num: int):
+def revers_num_2(num: int, result=''):
     """
-    :param num: Число, которое Вы ввели для проверки
-    :return: Возвращает количество четных и нечетных цифр числа
+    :param num: Число, которое нужно перевернуть
+    :param result: Результат
+    :return: Возвращает перевернутое число в формате строки
     """
-    even = 0
-    odd = 0
+
     while num != 0:
         digit = num % 10
-        if digit % 2 == 0:
-            even += 1
-            num = num // 10
-        else:
-            odd += 1
-            num = num // 10
+        result += str(digit)
+        num //= 10
 
-    return f'Четных чисел: {even}. Нечетных чисел: {odd}'
+    return f'Перевернутое число: {result}'
 
 
-try:
-    number = int(input('Введите целое число: '))
-    print(even_odd_counter_2(number))
-except ValueError:
-    print(f'Неверные данные. Введите целое число')
+print(revers_num_2(number))
 
 
 """
