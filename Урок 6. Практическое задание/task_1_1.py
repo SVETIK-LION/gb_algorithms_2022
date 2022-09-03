@@ -32,38 +32,39 @@
 """
 
 
-from memory_profiler import memory_usage
+from memory_profiler import profile
 
 
-def decor(func):
-    def wrapper(*args, **kvargs):
-        m_1 = memory_usage()
-        res = func(args[0])
-        m_2 = memory_usage()
-        mem_dif = m_1[0] - m_2[0]
-        return res, mem_dif
-    return wrapper
+# Исходная функция. Урок 2, задание 4
+@profile
+def sum_nums_line(n: int, elem: float, count: int, sum_numbers: float):
+    if count == n:
+        print(f'Сумма {n} элементов ряда равна: {sum_numbers}')
+    else:
+        return sum_nums_line(n, elem / 2 * (-1), count + 1, sum_numbers + elem)
+
+
+try:
+    n_elems = int(input('Введите количество элементов ряда(целое положительное число): '))
+    sum_nums_line(n_elems, 1, 0, 0)
+except ValueError:
+    print('Неверное значение. Введите целое положительное число')
+
+
+# Оптимизированная функция
+@profile
+def sum_nums_line_opt(amount_elems):
+    elem = 1
+    count = 0
+    for i in range(amount_elems):
+        count += 1
+        elem = -elem / 2
+    print(f'Сумма {amount_elems} элементов ряда равна: {count}')
 
 
 
-
-# Исходная функция
-@decor
-def append_list_1(lst):
-    for i in range(10000):
-        lst.append(i)
-    return lst
-
-# О
-@decor
-def append_list_2(lst):
-    for i in lst:
-        yield i
-
-
-if __name__ == '__main__':
-    my_generator, mem_diff = append_list_2(list(range(10000)))
-    print(type(my_generator))
-
-
-    print(f'Выполнение заняло: {mem_diff} Mib')
+try:
+    n_elems = int(input('Введите количество элементов ряда(целое положительное число): '))
+    sum_nums_line_opt(n_elems)
+except ValueError:
+    print('Неверное значение. Введите целое положительное число')
