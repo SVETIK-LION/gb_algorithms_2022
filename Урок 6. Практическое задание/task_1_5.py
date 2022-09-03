@@ -37,6 +37,7 @@ import functools
 from memory_profiler import profile
 
 
+# Урок 5, задание 2_1
 # Исходная функция
 @profile
 def hex_calc_1():
