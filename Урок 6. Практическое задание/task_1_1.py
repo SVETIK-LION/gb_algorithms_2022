@@ -35,7 +35,8 @@
 from memory_profiler import profile
 
 
-# Исходная функция. Урок 2, задание 4
+# Урок 2, задание 4
+# Исходная функция
 @profile
 def sum_nums_line(n: int, elem: float, count: int, sum_numbers: float):
     if count == n:
