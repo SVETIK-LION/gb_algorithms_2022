@@ -24,3 +24,24 @@ reduce
 __mul__
 __add__
 """
+
+
+class HexCalc:
+    def __init__(self, num_1, num_2):
+        self.num_1 = num_1
+        self.num_2 = num_2
+
+    def __add__(self, other):
+        return list(hex(int(''.join(self.num_1), 16) + int(''.join(other.num_2), 16)).upper())[2:]
+
+    def __mul__(self, other):
+        return list(hex(int(''.join(self.num_1), 16) * int(''.join(other.num_2), 16)).upper())[2:]
+
+
+number_1 = input('Введите первое натуральное шестнадцатеричное число: ')
+number_2 = input('Введите второе натуральное шестнадцатеричное число: ')
+
+sum_nums = HexCalc(number_1, number_2) + HexCalc(number_1, number_2)
+mul_nums = HexCalc(number_1, number_2) * HexCalc(number_1, number_2)
+
+print(f'Сумма чисел: {sum_nums}\nПроизведение: {mul_nums}')
