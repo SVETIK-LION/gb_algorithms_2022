@@ -37,7 +37,6 @@ from memory_profiler import profile
 
 # Урок 2, задание 3
 # Исходная функция
-
 number = 1234
 
 
@@ -60,7 +59,7 @@ def revers_num(num: int, result=''):
 print(revers_num(number))
 
 
-# Опт
+# Оптимизированная функция
 @profile
 def revers_num_2(num: int, result=''):
     """
