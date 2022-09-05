@@ -9,3 +9,34 @@
 Опищите эту проблему и найдите простой путь ее решения.
 Опишите этот путь и покажите его применение
 """
+
+
+from memory_profiler import memory_usage
+
+
+lst = [] # Список для значений используемой памяти при вызовах рекурсии
+
+
+def memory_decorator(func):
+    """
+    Вычисляет память, которая была использована при вызове функции\n
+    :param func:
+    :return:
+    """
+    def wrapper(*args, **kvargs):
+        result = func(*args, **kvargs)
+        lst.append(str(memory_usage()))
+
+        return result
+
+    return wrapper
+
+
+
+
+
+
+
+
+
+
