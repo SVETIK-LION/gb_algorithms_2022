@@ -30,3 +30,80 @@
 
 Это файл для второго скрипта
 """
+
+
+from collections import namedtuple
+from recordclass import recordclass
+import sys
+from memory_profiler import profile
+
+@profile
+def avg_profit_1():
+    result_profit = {}
+    amount = int(input('Введите количество предриятий для рассчета прибыли: '))
+    companies_nt = namedtuple('Company', 'name quarter_1 quarter_2 quarter_3 quarter_4')
+    for i in range(amount):
+        company = companies_nt(name=input('Введиите название предприятия: '),
+                               quarter_1=int(input('Введите прибыль предприятия за первый квартал: ')),
+                               quarter_2=int(input('Введите прибыль предприятия за второй квартал: ')),
+                               quarter_3=int(input('Введите прибыль предприятия за третий квартал: ')),
+                               quarter_4=int(input('Введите прибыль предприятия за четвертый квартал: ')))
+
+        result_profit[company.name] = (company.quarter_1 + company.quarter_2 +
+                                       company.quarter_3 + company.quarter_4) / 4
+
+    total_avg_profit = 0
+    for val in result_profit.values():
+        total_avg_profit += val
+        total_avg_profit = total_avg_profit / amount
+
+    print(f'Средняя годовая прибыль всех предприятий: {total_avg_profit}')
+
+    for key, val in result_profit.items():
+        if val > total_avg_profit:
+            print(f'Предприятия, с прибылью выше среднего значения: {key}')
+        elif val < total_avg_profit:
+            print(f'Предприятия, с прибылью ниже среднего значения: {key}')
+
+    print(f'Объем занимаемой памяти объектом namedtuple: {sys.getsizeof(companies_nt)}')
+
+
+avg_profit_1()
+
+
+@profile
+def avg_profit_2():
+    result_profit = {}
+    amount = int(input('Введите количество предриятий для рассчета прибыли: '))
+    companies_rec = recordclass('Company', 'name quarter_1 quarter_2 quarter_3 quarter_4')
+    for i in range(amount):
+        company = companies_rec(name=input('Введиите название предприятия: '),
+                                quarter_1=int(input('Введите прибыль предприятия за первый квартал: ')),
+                                quarter_2=int(input('Введите прибыль предприятия за второй квартал: ')),
+                                quarter_3=int(input('Введите прибыль предприятия за третий квартал: ')),
+                                quarter_4=int(input('Введите прибыль предприятия за четвертый квартал: ')))
+
+        result_profit[company.name] = (company.quarter_1 + company.quarter_2 +
+                                       company.quarter_3 + company.quarter_4) / 4
+
+    total_avg_profit = 0
+    for val in result_profit.values():
+        total_avg_profit += val
+        total_avg_profit = total_avg_profit / amount
+
+    print(f'Средняя годовая прибыль всех предприятий: {total_avg_profit}')
+
+    for key, val in result_profit.items():
+        if val > total_avg_profit:
+            print(f'Предприятия, с прибылью выше среднего значения: {key}')
+        elif val < total_avg_profit:
+            print(f'Предприятия, с прибылью ниже среднего значения: {key}')
+
+    print(f'Объем занимаемой памяти объектом recordclass: {sys.getsizeof(companies_rec)}')
+
+
+avg_profit_2()
+
+
+# Объем занимаемой памяти объектом namedtuple: 904
+# Объем занимаемой памяти объектом recordclass: 1072

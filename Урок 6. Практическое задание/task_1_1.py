@@ -30,3 +30,55 @@
 
 Это файл для первого скрипта
 """
+
+
+from memory_profiler import profile
+
+
+# Урок 2, задание 3
+# Исходная функция
+number = 1234
+
+
+@profile
+def revers_num(num: int, result=''):
+    """
+    :param num: Число, которое нужно перевернуть
+    :param result: Результат
+    :return: Возвращает перевернутое число в формате строки
+    """
+    if num == 0:
+        return f'Перевернутое число: {result}'
+    else:
+        digit = num % 10
+        result += str(digit)
+        num //= 10
+        return revers_num(num, result)
+
+
+print(revers_num(number))
+
+
+# Оптимизированная функция
+@profile
+def revers_num_2(num: int, result=''):
+    """
+    :param num: Число, которое нужно перевернуть
+    :param result: Результат
+    :return: Возвращает перевернутое число в формате строки
+    """
+
+    while num != 0:
+        digit = num % 10
+        result += str(digit)
+        num //= 10
+
+    return f'Перевернутое число: {result}'
+
+
+print(revers_num_2(number))
+
+
+"""
+Убрала рекурсию из функции, но почему-то занимает столько же места.
+"""
